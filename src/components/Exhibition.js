@@ -26,7 +26,7 @@ const Exhibition = (props) => {
     });
   }
 
-  console.log(exhibitsList);
+ 
   return <div className="">{exhibitsList}</div>;
 };
 
