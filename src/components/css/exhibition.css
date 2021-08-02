@@ -1,0 +1,29 @@
+.exhibit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exhibit-box {
+    margin-top: 30px;
+}
+
+
+.exhibit-img {
+    width: 448px;
+    height: 252px;
+}
+
+.exhibit-title {
+    color: #1a1a1a;
+    font-family: Sabon,Times New Roman,Times,Georgia,serif;
+}
+
+.exhibit-title:hover {
+    color:  #767676;
+}
+
+.exhibit-date {
+    color: grey;
+    font-weight: bold;
+}
