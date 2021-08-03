@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TogoList from "./TogoList";
 
 const Togo = (props) => {
-    const {togos} = props
+    const {togos, addToTogos, removeTogo} = props
   return (
     <div>
       <h2>To-Go List</h2>
@@ -14,7 +14,7 @@ const Togo = (props) => {
       <button>Upcoming</button>
       <label htmlFor="date-event">Sort by Date:</label>
       <input type="date" name="date-event" id="dateEvent" placeholder="Sort by Date" />
-      <TogoList togos={togos} />
+      <TogoList removeTogo={removeTogo}  />
     </div>
   );
 };

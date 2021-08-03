@@ -26,6 +26,12 @@ function App() {
     setExhibits(response.data.items);
   };
 
+  const removeTogo = (ex) => {
+    const removedTogo = togos.filter(togo => togo.sys.id !== ex.sys.id)
+    setTogos(removedTogo) 
+    window.location.reload(false);
+  }
+
   const addToTogos = (exhibitToAdd) => {
     const isAdded = togos.some(
       (exhibit) => exhibit.sys.id === exhibitToAdd.sys.id
@@ -74,7 +80,7 @@ function App() {
             <Exhibition exhibits={exhibits} addToTogos={addToTogos} />
           </Route>
           <Route path="/togo">
-            <Togo exhibits={exhibits} togo={togos} />
+            <Togo exhibits={exhibits} togo={togos} removeTogo={removeTogo}/>
           </Route>
         </div>
       </div>
