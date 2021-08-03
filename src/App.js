@@ -1,36 +1,49 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import NavBar from "./components/NavBar";
 import { Route, NavLink, HashRouter } from "react-router-dom";
 import Exhibition from "./components/Exhibition";
 import Togo from "./components/Togo";
 import api from "./services/api";
+import { client } from "./services/contentful";
+//const contentful = require('contentful')
 
 function App() {
+  const [fullData, setFullData] = useState([])
   const [exhibits, setExhibits] = useState([]);
   const [togos, setTogos] = useState([]);
+  
 
   useEffect(() => {
     getExhibits();
     if (localStorage.getItem("togosData")) {
       setTogos(JSON.parse(localStorage.getItem("togosData")));
     }
+   
   }, []);
-
+console.log(exhibits)
   useEffect(() => {
     localStorage.setItem("togosData", JSON.stringify(togos));
   }, [togos]);
 
+  useEffect(() => {
+    client
+    .getEntry()
+    .then((response) => console.log(response))
+    .catch(console.error);
+  }, [])
   const getExhibits = async () => {
     const response = await api.get();
     setExhibits(response.data.items);
+    setFullData(response.data)
   };
 
+  console.log(fullData)
+
   const removeTogo = (ex) => {
-    const removedTogo = togos.filter(togo => togo.sys.id !== ex.sys.id)
-    setTogos(removedTogo) 
+    const removedTogo = togos.filter((togo) => togo.sys.id !== ex.sys.id);
+    setTogos(removedTogo);
     window.location.reload(false);
-  }
+  };
 
   const addToTogos = (exhibitToAdd) => {
     const isAdded = togos.some(
@@ -44,12 +57,10 @@ function App() {
         (togo) => togo.sys.id !== exhibitToAdd.sys.id
       );
 
-     
       setTogos(filteredTogos);
     }
   };
 
-  
   return (
     // <div className="App">
     //   <NavBar />
@@ -64,7 +75,9 @@ function App() {
     // </div>
     <HashRouter>
       <div>
-        <h1 style={{marginTop: '10px' , marginLeft: '10px'}}>Exhibition Go-er</h1>
+        <h1 style={{ marginTop: "10px", marginLeft: "10px" }}>
+          Exhibition Go-er
+        </h1>
         <ul className="header">
           <li>
             <NavLink exact to="/">
@@ -77,10 +90,10 @@ function App() {
         </ul>
         <div className="content">
           <Route exact path="/">
-            <Exhibition exhibits={exhibits} addToTogos={addToTogos} />
+            <Exhibition exhibits={exhibits} addToTogos={addToTogos} fullData={fullData} />
           </Route>
           <Route path="/togo">
-            <Togo exhibits={exhibits} togos={togos} removeTogo={removeTogo}/>
+            <Togo exhibits={exhibits} togos={togos} removeTogo={removeTogo} fullData={fullData} />
           </Route>
         </div>
       </div>

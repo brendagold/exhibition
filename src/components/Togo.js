@@ -11,22 +11,36 @@ const Togo = (props) => {
       let a = new Date(x.fields.endDate),
         b = new Date(y.fields.endDate);
 
-      let c = a - b;
-
       return a - b;
     });
     setSortedDate(togos);
   };
 
   const upcomingEx = () => {
-   let result = togos.sort(function (x, y) {
+  togos.sort(function (x, y) {
+      let a = new Date(x.fields.date),
+        b = new Date();
+
+      let c = a > b;
+      console.log(c);
+      return c;
+    });
+
+    console.log(togos)
+
+    // let filtered = result.filter((item) => item.fields.endDate <= Date.now());
+
+    // console.log(filtered);
+  };
+
+  const CurrentEx = () => {
+    let result = togos.sort(function (x, y) {
       let a = new Date(x.fields.endDate),
         b = new Date();
 
       let c = b - a;
       console.log(c);
       return b - a;
-
     });
 
     // let start = new Date();
@@ -34,13 +48,13 @@ const Togo = (props) => {
     // let result =  togos.filter((item) => {
     //   let date = new Date(item.fields.endDate);
     //   let c = date >= start;
-    //   return c 
-      
+    //   return c
+
     // });
 
-    console.log(result)
+    console.log(result);
   };
-console.log(togos)
+  console.log(togos);
   return (
     <div className="togo-contain">
       <h2>To-Go List</h2>

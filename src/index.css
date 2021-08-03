@@ -57,6 +57,7 @@ ul.header li a {
   font-weight: bold;
   border: none;
   margin-bottom: 15px;
+  transition: all 0.2s ease-in;
   /* transition: transform 200ms ease-in-out; */
 }
 

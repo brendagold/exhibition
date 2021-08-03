@@ -1,13 +1,13 @@
 // contentful.js v4.x.x
 const contentful = require('contentful')
 
-const client = contentful.createClient({
+export const client = contentful.createClient({
   space: ' nbe8tmkxy59u',
   accessToken: 'ynfiaMt1N5Skp8U-uq7Z49Xc9OSl6g-je6-cEcapCqU'
 })
 
-const asset = client.getAsset('<asset_id>')
-  .then((asset) => console.log(asset.fields.file.url))
+// const asset = client.getAsset('<asset_id>')
+//   .then((asset) => console.log(asset.fields.file.url))
 
 
   // <div>
