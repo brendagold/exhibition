@@ -48,7 +48,7 @@ const TogoList = (props) => {
               <p>{`Date: ${moment(ex.fields.date).format("DD/MM/YYYY")} - ${moment(
                 ex.fields.endDate
               ).format("DD/MM/YYYY")}`}</p>
-              <button className="card-link" onClick={() => removeTogo(ex)}>
+              <button className="card-link btnn" onClick={() => removeTogo(ex)}>
                 Remove Togo 
               </button>
             </div>

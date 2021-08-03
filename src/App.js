@@ -64,7 +64,7 @@ function App() {
     // </div>
     <HashRouter>
       <div>
-        <h1>Exhibition Go-er</h1>
+        <h1 style={{marginTop: '10px' , marginLeft: '10px'}}>Exhibition Go-er</h1>
         <ul className="header">
           <li>
             <NavLink exact to="/">

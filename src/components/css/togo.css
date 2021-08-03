@@ -80,14 +80,14 @@
   transform: scale(1.02);
 }
 
-.card-contain:hover .card-link {
+.card-contain:hover  {
   display: inline-block;
 }
 
-.card-link:hover {
+/* .card-link:hover {
   color: white;
   background-color: #0099FF;
-}
+} */
 
 .card-content {
   color: black;
@@ -109,7 +109,7 @@
   margin-top: 10px;
 }
 
-.card-link {
+/* .card-link {
   margin-top: 20px;
   padding: 0.3em 2.5em;
   color: #0099FF;
@@ -120,7 +120,7 @@
   margin-bottom: 15px;
   /* border-bottom: 2px double var(--clr-accent);
   border-width: medium; */
-}
+/* }*/ 
 
 .togo-contain button {
   margin-right: 10px;

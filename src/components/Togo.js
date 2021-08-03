@@ -12,12 +12,35 @@ const Togo = (props) => {
         b = new Date(y.fields.endDate);
 
       let c = a - b;
-      console.log(c);
+
       return a - b;
     });
     setSortedDate(togos);
   };
 
+  const upcomingEx = () => {
+   let result = togos.sort(function (x, y) {
+      let a = new Date(x.fields.endDate),
+        b = new Date();
+
+      let c = b - a;
+      console.log(c);
+      return b - a;
+
+    });
+
+    // let start = new Date();
+
+    // let result =  togos.filter((item) => {
+    //   let date = new Date(item.fields.endDate);
+    //   let c = date >= start;
+    //   return c 
+      
+    // });
+
+    console.log(result)
+  };
+console.log(togos)
   return (
     <div className="togo-contain">
       <h2>To-Go List</h2>
@@ -26,11 +49,15 @@ const Togo = (props) => {
         dolores maiores facere sed id odit earum excepturi corporis nisi optio.
       </p>
       <div className="buttons">
-        <button className="togo-btn">Current</button>
-      <button className="togo-btn">Upcoming</button>
-      <button onClick={() => sortByDate()} className="togo-btn">Sort by End Date</button>
+        <button className="togo-btn btnn">Current</button>
+        <button className="togo-btn btnn" onClick={() => upcomingEx()}>
+          Upcoming
+        </button>
+        <button onClick={() => sortByDate()} className="togo-btn btnn">
+          Sort by End Date
+        </button>
       </div>
-      
+
       {/* <label htmlFor="date-event">Sort by Date:</label>
       <input type="date" name="date-event" id="dateEvent" placeholder="Sort by Date" /> */}
       <TogoList removeTogo={removeTogo} sortedDate={sortedDate} />
