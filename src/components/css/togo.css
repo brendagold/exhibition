@@ -50,7 +50,16 @@
     
   }
 
+  /* .togo-contain button {
+    margin-top: 10px;
+  } */
+  
+
 } 
+
+.buttons {
+  display: flex;
+}
 
 .card-contain {
   width: 35%;

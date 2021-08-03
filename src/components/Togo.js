@@ -4,24 +4,19 @@ import "./css/togo.css";
 
 const Togo = (props) => {
   const { togos, addToTogos, removeTogo } = props;
-  const [sortedDate, setSortedDate] = useState([])
+  const [sortedDate, setSortedDate] = useState([]);
 
   const sortByDate = () => {
-   
-   togos.sort(function (x, y) {
+    togos.sort(function (x, y) {
       let a = new Date(x.fields.endDate),
         b = new Date(y.fields.endDate);
 
       let c = a - b;
       console.log(c);
       return a - b;
-
-
     });
-setSortedDate(togos)
-    
+    setSortedDate(togos);
   };
-
 
   return (
     <div className="togo-contain">
@@ -30,9 +25,12 @@ setSortedDate(togos)
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus,
         dolores maiores facere sed id odit earum excepturi corporis nisi optio.
       </p>
-      <button>Current</button>
-      <button>Upcoming</button>
-      <button onClick={() => sortByDate()}>Sort by End Date</button>
+      <div className="buttons">
+        <button className="togo-btn">Current</button>
+      <button className="togo-btn">Upcoming</button>
+      <button onClick={() => sortByDate()} className="togo-btn">Sort by End Date</button>
+      </div>
+      
       {/* <label htmlFor="date-event">Sort by Date:</label>
       <input type="date" name="date-event" id="dateEvent" placeholder="Sort by Date" /> */}
       <TogoList removeTogo={removeTogo} sortedDate={sortedDate} />
