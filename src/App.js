@@ -80,7 +80,7 @@ function App() {
             <Exhibition exhibits={exhibits} addToTogos={addToTogos} />
           </Route>
           <Route path="/togo">
-            <Togo exhibits={exhibits} togo={togos} removeTogo={removeTogo}/>
+            <Togo exhibits={exhibits} togos={togos} removeTogo={removeTogo}/>
           </Route>
         </div>
       </div>

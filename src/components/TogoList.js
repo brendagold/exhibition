@@ -15,7 +15,7 @@ const TogoList = (props) => {
   const [togoSelected, setTogoSelected] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const { togos } = props;
-  const { removeTogo } = props;
+  const { removeTogo , sortedDate} = props;
 
   useEffect((props) => {
     if (localStorage.getItem("togosData")) {
@@ -23,12 +23,21 @@ const TogoList = (props) => {
     }
   }, []);
 
-  console.log(togoSelected);
+  
 
+  console.log(sortedDate)
+  let data
+ if(sortedDate.length === 0) {
+   data = togoSelected
+ } else {
+   data = sortedDate
+ }
+
+ console.log(sortedDate)
   return (
     <>
       <div className="flex-contain">
-        {togoSelected.map((ex) => (
+        {data.map((ex) => (
           <div className="card-contain" key={ex.sys.id} id={ex.sys.id}>
             <img
               className="card-image"
