@@ -38,6 +38,11 @@
     
   }
 
+
+  .buttons {
+    flex-direction: column;
+  }
+
   .card-contain {
     flex: 100%;
     width: 40%;
