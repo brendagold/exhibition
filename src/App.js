@@ -64,7 +64,7 @@ function App() {
     // </div>
     <HashRouter>
       <div>
-        <h1>Simple SPA</h1>
+        <h1>Exhibition Go-er</h1>
         <ul className="header">
           <li>
             <NavLink exact to="/">
