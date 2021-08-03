@@ -13,7 +13,6 @@ import {
 
 const TogoList = (props) => {
   const [togoSelected, setTogoSelected] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
   const { togos } = props;
   const { removeTogo , sortedDate} = props;
 
