@@ -4,7 +4,7 @@ import moment from "moment";
 
 
 const TogoList = (props) => {
-  const { togos, fullData, removeTogo, sortedDate, upcoming, current, home } = props;
+  const { fullData, removeTogo,  filteredTogos } = props;
   const [togoSelected, setTogoSelected] = useState([]);
 
   useEffect((props) => {
@@ -12,26 +12,15 @@ const TogoList = (props) => {
       setTogoSelected(JSON.parse(localStorage.getItem("togosData")));
     }
   }, []);
-  let data;
-  if (sortedDate.length !== 0) {
-    data = sortedDate;
-  } else if (upcoming.length !== 0) {
-    data = upcoming;
-  } else if (current !== 0) {
-    data = current
-  } else if(home !== 0) {
-    data = home
-  } else {
-    data = togoSelected;
-  }
 
-  console.log(togoSelected)
+  
+
 
   return (
     <>
       <div className="flex-contain">
         {fullData?.includes?.Asset?.length > 0 ? (
-          data.map((ex, idx) => (
+          filteredTogos.map((ex, idx) => (
             <div className="card-contain" key={ex.id} id={ex.id}>
               <img className="card-image" src={ex.image} alt="" />
               <div className="card-content">
