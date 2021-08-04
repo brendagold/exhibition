@@ -40,7 +40,7 @@ function App() {
 
 
   const removeTogo = (ex) => {
-    const removedTogo = togos.filter((togo) => togo.sys.id !== ex.sys.id);
+    const removedTogo = togos.filter((togo) => togo.id !== ex.id);
     setTogos(removedTogo);
     window.location.reload(false);
   };
