@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 
 const TogoList = (props) => {
-  const { togos, fullData, removeTogo, sortedDate, upcoming } = props;
+  const { togos, fullData, removeTogo, sortedDate, upcoming, current } = props;
   const [togoSelected, setTogoSelected] = useState([]);
 
   useEffect((props) => {
@@ -27,6 +27,8 @@ const TogoList = (props) => {
     data = sortedDate;
   } else if (upcoming.length !== 0) {
     data = upcoming;
+  } else if (current !== 0) {
+    data = current
   } else {
     data = togoSelected;
   }
