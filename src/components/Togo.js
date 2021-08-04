@@ -8,6 +8,7 @@ const Togo = (props) => {
   const [sortedDate, setSortedDate] = useState([]);
   const [upcoming, setUpcoming] = useState([]);
   const [current, setCurrent] = useState([]);
+  const [home, setHome] = useState([])
 
   const sortByDate = () => {
     togos.sort(function (x, y) {
@@ -25,7 +26,16 @@ const Togo = (props) => {
 
     setUpcoming(filtered);
     setSortedDate([]);
+    setCurrent([])
   };
+
+  const Home = () => {
+    setHome(togos)
+    setUpcoming([])
+    setSortedDate([])
+    setCurrent([])
+  
+  }
 
   const CurrentEx = () => {
     let currentEx = togos.filter((item) => moment(item.endDate) >= Date.now() && moment(item.startDate) <= Date.now());
@@ -44,6 +54,9 @@ const Togo = (props) => {
         dolores maiores facere sed id odit earum excepturi corporis nisi optio.
       </p>
       <div className="buttons">
+      <button className="togo-btn btnn" onClick={() => Home()}>
+          Home
+        </button>
         <button className="togo-btn btnn" onClick={() => CurrentEx()}>
           Current
         </button>
@@ -63,6 +76,7 @@ const Togo = (props) => {
         fullData={fullData}
         upcoming={upcoming}
         current={current}
+        home={home}
       />
     </div>
   );
