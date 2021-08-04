@@ -6,8 +6,6 @@ import moment from "moment";
 const Exhibition = (props) => {
   const { exhibits, addToTogos, fullData } = props;
 
-  console.log(fullData)
-
   const dataArr = exhibits.map((item, index) => {
     return {
      image: fullData.includes?.Asset?.find(asset => asset.sys.id === item.fields.exhibitionImage.sys.id).fields.file.url,

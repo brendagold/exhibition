@@ -2,25 +2,23 @@ import React, { useEffect, useState } from "react";
 import "./css/togo.css";
 import moment from "moment";
 
-
 const TogoList = (props) => {
-  const { fullData, removeTogo,  filteredTogos } = props;
-  const [togoSelected, setTogoSelected] = useState([]);
+  const { fullData, removeTogo, filteredTogos, togos } = props;
 
-  useEffect((props) => {
-    if (localStorage.getItem("togosData")) {
-      setTogoSelected(JSON.parse(localStorage.getItem("togosData")));
-    }
-  }, []);
+  let data;
 
-  
+  if (filteredTogos.length === 0) {
+    data = togos;
+  } else {
+    data = filteredTogos;
+  }
 
-
+  console.log(filteredTogos);
   return (
     <>
       <div className="flex-contain">
-        {fullData?.includes?.Asset?.length > 0 ? (
-          filteredTogos.map((ex, idx) => (
+        {fullData?.includes?.Asset?.length > 0 &&
+          data.map((ex, idx) => (
             <div className="card-contain" key={ex.id} id={ex.id}>
               <img className="card-image" src={ex.image} alt="" />
               <div className="card-content">
@@ -36,10 +34,7 @@ const TogoList = (props) => {
                 </button>
               </div>
             </div>
-          ))
-        ) : (
-          <h1>Loading</h1>
-        )}
+          ))}
       </div>
     </>
   );

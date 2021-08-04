@@ -42,7 +42,9 @@ function App() {
   const removeTogo = (ex) => {
     const removedTogo = togos.filter((togo) => togo.id !== ex.id);
     setTogos(removedTogo);
+    console.log(removedTogo)
     window.location.reload(false);
+    console.log(togos)
   };
 
   const addToTogos = (exhibitToAdd) => {
@@ -62,17 +64,7 @@ function App() {
   };
 
   return (
-    // <div className="App">
-    //   <NavBar />
-    //   <Switch>
-    //     <Route exact path="/">
-    //       <Exhibition exhibits={exhibits} addToTogos={addToTogos} />
-    //     </Route>
-    //     <Route path="/togo">
-    //       <Togo exhibits={exhibits} togo={togos}/>
-    //     </Route>
-    //   </Switch>
-    // </div>
+   
     <HashRouter>
       <div>
         <h1 style={{ marginTop: "10px", marginLeft: "10px" }}>
