@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./css/togo.css";
 import moment from "moment";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardDeck,
-  Button,
-} from "reactstrap";
+
 
 const TogoList = (props) => {
-  const { togos, fullData, removeTogo, sortedDate, upcoming, current } = props;
+  const { togos, fullData, removeTogo, sortedDate, upcoming, current, home } = props;
   const [togoSelected, setTogoSelected] = useState([]);
 
   useEffect((props) => {
@@ -20,8 +12,6 @@ const TogoList = (props) => {
       setTogoSelected(JSON.parse(localStorage.getItem("togosData")));
     }
   }, []);
-
-  console.log(sortedDate);
   let data;
   if (sortedDate.length !== 0) {
     data = sortedDate;
@@ -29,11 +19,13 @@ const TogoList = (props) => {
     data = upcoming;
   } else if (current !== 0) {
     data = current
+  } else if(home !== 0) {
+    data = home
   } else {
     data = togoSelected;
   }
 
-  console.log(sortedDate);
+  console.log(togoSelected)
 
   return (
     <>
