@@ -20,7 +20,8 @@ function App() {
     }
    
   }, []);
-console.log(exhibits)
+
+  
   useEffect(() => {
     localStorage.setItem("togosData", JSON.stringify(togos));
   }, [togos]);
@@ -34,10 +35,9 @@ console.log(exhibits)
   const getExhibits = async () => {
     const response = await api.get();
     setExhibits(response.data.items);
-    setFullData(response.data)
+    setFullData(response?.data)
   };
 
-  console.log(fullData)
 
   const removeTogo = (ex) => {
     const removedTogo = togos.filter((togo) => togo.sys.id !== ex.sys.id);
@@ -47,14 +47,14 @@ console.log(exhibits)
 
   const addToTogos = (exhibitToAdd) => {
     const isAdded = togos.some(
-      (exhibit) => exhibit.sys.id === exhibitToAdd.sys.id
+      (exhibit) => exhibit.id === exhibitToAdd.id
     );
 
     if (!isAdded) {
       setTogos([...togos, exhibitToAdd]);
     } else {
       const filteredTogos = togos.filter(
-        (togo) => togo.sys.id !== exhibitToAdd.sys.id
+        (togo) => togo.id !== exhibitToAdd.id
       );
 
       setTogos(filteredTogos);

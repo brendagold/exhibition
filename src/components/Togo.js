@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import TogoList from "./TogoList";
 import "./css/togo.css";
+import moment from "moment";
 
 const Togo = (props) => {
-  const { togos, addToTogos, removeTogo } = props;
+  const { togos, addToTogos, fullData, removeTogo } = props;
   const [sortedDate, setSortedDate] = useState([]);
+  const [upcoming, setUpcoming] = useState([])
 
   const sortByDate = () => {
     togos.sort(function (x, y) {
-      let a = new Date(x.fields.endDate),
-        b = new Date(y.fields.endDate);
+      let a = new Date(x.endDate),
+        b = new Date(y.endDate);
 
       return a - b;
     });
@@ -17,25 +19,23 @@ const Togo = (props) => {
   };
 
   const upcomingEx = () => {
-  togos.sort(function (x, y) {
-      let a = new Date(x.fields.date),
-        b = new Date();
+  //   let b = new Date()
+  // let upcoming = togos.filter( (togo) => { moment(togo.StartDate) >= b
+    
+   
+  //   });
 
-      let c = a > b;
-      console.log(c);
-      return c;
-    });
+  //   console.log(upcoming)
 
-    console.log(togos)
+    let filtered = togos.filter((item) => moment(item.startDate) >= Date.now());
 
-    // let filtered = result.filter((item) => item.fields.endDate <= Date.now());
-
-    // console.log(filtered);
+    console.log(filtered);
+    setUpcoming(filtered)
   };
 
   const CurrentEx = () => {
     let result = togos.sort(function (x, y) {
-      let a = new Date(x.fields.endDate),
+      let a = new Date(x.endDate),
         b = new Date();
 
       let c = b - a;
@@ -74,7 +74,7 @@ const Togo = (props) => {
 
       {/* <label htmlFor="date-event">Sort by Date:</label>
       <input type="date" name="date-event" id="dateEvent" placeholder="Sort by Date" /> */}
-      <TogoList removeTogo={removeTogo} sortedDate={sortedDate} />
+      <TogoList removeTogo={removeTogo} sortedDate={sortedDate} fullData={fullData} upcoming={upcoming} />
     </div>
   );
 };

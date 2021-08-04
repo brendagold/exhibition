@@ -12,9 +12,8 @@ import {
 } from "reactstrap";
 
 const TogoList = (props) => {
+  const { togos, fullData, removeTogo, sortedDate, upcoming } = props;
   const [togoSelected, setTogoSelected] = useState([]);
-  const { togos } = props;
-  const { removeTogo , sortedDate} = props;
 
   useEffect((props) => {
     if (localStorage.getItem("togosData")) {
@@ -22,38 +21,42 @@ const TogoList = (props) => {
     }
   }, []);
 
-  
+  console.log(sortedDate);
+  let data;
+  if (sortedDate.length !== 0) {
+    data = sortedDate;
+  } else if (upcoming.length !== 0) {
+    data = upcoming;
+  } else {
+    data = togoSelected;
+  }
 
-  console.log(sortedDate)
-  let data
- if(sortedDate.length === 0) {
-   data = togoSelected
- } else {
-   data = sortedDate
- }
+  console.log(sortedDate);
 
- console.log(sortedDate)
   return (
     <>
       <div className="flex-contain">
-        {data.map((ex) => (
-          <div className="card-contain" key={ex.sys.id} id={ex.sys.id}>
-            <img
-              className="card-image"
-              src={`https://artic-web.imgix.net/null82799ca2-66ed-4596-ab7e-283933a8be51/NPG_2018_16Obama_press.jpg?rect=0%2C377%2C2046%2C1151&auto=format&fm=jpg&q=1&fit=crop&crop=faces%2Cedges%2Centropy&w=750&h=422&blur=1200&sat=20`}
-              alt=""
-            />
-            <div className="card-content">
-              <h2>{ex.fields.exhibition}</h2>
-              <p>{`Date: ${moment(ex.fields.date).format("DD/MM/YYYY")} - ${moment(
-                ex.fields.endDate
-              ).format("DD/MM/YYYY")}`}</p>
-              <button className="card-link btnn" onClick={() => removeTogo(ex)}>
-                Remove Togo 
-              </button>
+        {fullData?.includes?.Asset?.length > 0 ? (
+          data.map((ex, idx) => (
+            <div className="card-contain" key={ex.id} id={ex.id}>
+              <img className="card-image" src={ex.image} alt="" />
+              <div className="card-content">
+                <h2>{ex.title}</h2>
+                <p>{`Date: ${moment(ex.startDate).format(
+                  "DD/MM/YYYY"
+                )} - ${moment(ex.endDate).format("DD/MM/YYYY")}`}</p>
+                <button
+                  className="card-link btnn"
+                  onClick={() => removeTogo(ex)}
+                >
+                  Remove Togo
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <h1>Loading</h1>
+        )}
       </div>
     </>
   );

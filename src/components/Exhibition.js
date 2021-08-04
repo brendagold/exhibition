@@ -6,38 +6,39 @@ import moment from "moment";
 const Exhibition = (props) => {
   const { exhibits, addToTogos, fullData } = props;
 
-  // let srcfunc = fullData.includes.Asset.find(
-  //   (asset) => asset.sys.id === ex.fields.exhibitionImage.sys.id
-  // ).fields.file.url;
+  console.log(fullData)
 
-  let srclink = `https://artic-web.imgix.net/null82799ca2-66ed-4596-ab7e-283933a8be51/NPG_2018_16Obama_press.jpg?rect=0%2C377%2C2046%2C1151&auto=format&fm=jpg&q=1&fit=crop&crop=faces%2Cedges%2Centropy&w=750&h=422&blur=1200&sat=20`;
-
-  let exhibitsList;
-  console.log(exhibits);
-  if (exhibits) {
-    exhibitsList = exhibits.map((ex, idx) => {
-      return (
-        <>
-          <Exhibit
-            key={ex.sys.id}
-            id={ex.sys.id}
-            imgSrc={srclink}
-            title={ex.fields.exhibition}
-            date={`${moment(ex.fields.date).format("DD/MM/YYYY")} - ${moment(
-              ex.fields.endDate
-            ).format("DD/MM/YYYY")}`}
-            addToTogos={addToTogos}
-            ex={ex}
-          />
-        </>
-      );
-    });
-  }
+  const dataArr = exhibits.map((item, index) => {
+    return {
+     image: fullData.includes?.Asset?.find(asset => asset.sys.id === item.fields.exhibitionImage.sys.id).fields.file.url,
+     title: item.fields.exhibition,
+     startDate: item.fields.date,
+     endDate: item.fields.endDate,
+     link: item.fields.links,
+     id: item.sys.id
+    };
+  })
 
   return (
     <>
       <h1>Exhibitions</h1>
-      <div className="exhibit">{exhibitsList}</div>;
+      <div className="exhibit">
+        {fullData?.includes?.Asset?.length > 0 ?
+      dataArr.map((ex, idx) => (
+          <Exhibit
+            key={ex.id}
+            id={ex.id}
+            imgSrc={ex.image}
+            title={ex.title}
+            date={`${moment(ex.startDate).format("DD/MM/YYYY")} - ${moment(
+              ex.endDate
+            ).format("DD/MM/YYYY")}`}
+            addToTogos={addToTogos}
+            ex={ex}
+          />
+      )
+    ) : (<h1>Loading</h1>)}
+        </div>
     </>
   );
 };
